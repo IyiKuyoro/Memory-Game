@@ -113,10 +113,11 @@ header {
 
 #stars {
   padding: 10px;
+  min-width: 55px;
 }
 
 .star {
-  width: 20px;
+  width: 25px;
 }
 
 .even-space {
