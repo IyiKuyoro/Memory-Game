@@ -1,0 +1,189 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  overflow-y: hidden;
+  font-family: 'Gaegu', cursive;
+  background-image: url(../img/geometry2.png);
+}
+
+button {
+  border: none;
+  height: 48px;
+  width: 100px;
+  font-family: 'Gaegu', cursive;
+  font-size: 25px;
+}
+
+.invisible {
+  display: none;
+}
+
+.wrap-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#welcome-screen {
+  padding: 5%;
+  height: 100vh;
+  text-align: center;
+  background: linear-gradient(146deg, #5dffae, #48daff, #ddff64);
+  background-size: 300% 300%;
+
+  /* The following animation was generated using Gradient-Animator --> https://www.gradient-animator.com/ */
+  -webkit-animation: AnimationName 16s ease infinite;
+  animation: AnimationName 16s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0%{background-position:0% 51%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 51%}
+}
+
+@keyframes AnimationName { 
+  0%{background-position:0% 51%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 51%}
+}
+
+.welcome-msg {
+  width: 100%;
+  margin-top: 100px;
+}
+
+.main-heading {
+  font-size: 30px;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 10px;
+}
+
+.sub-heading {
+  font-weight: 200;
+  font-family: 'Gaegu', cursive;
+}
+
+.welcome-buttons {
+  margin-top: 50px; 
+}
+
+.play {
+  border-radius: 5px;
+  background: rgb(67, 255, 67);
+  box-shadow: 5px 5px 10px 2px rgb(179, 179, 179);
+}
+
+.play:hover {
+  height: 47px;
+  width: 98px;
+  box-shadow: 1px 1px 6px 2px rgb(179, 179, 179);
+}
+
+#game-screen {
+  padding: 15px;
+}
+
+header {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-shadow: 8px 8px 16px 0px rgb(179, 179, 179);
+  border-radius: 10px;
+  background-color: white;
+  background: linear-gradient(146deg, #5dffae, #48daff, #ddff64);
+  background-size: 200% 200%;
+}
+
+.pad {
+  padding: 10px;
+}
+
+#stars {
+  padding: 10px;
+}
+
+.star {
+  width: 30px;
+}
+
+.even-space {
+  justify-content: space-between;
+}
+
+.full-width {
+  max-width: 550px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.spacing {
+  margin-top: 50px;
+}
+
+#game-board {
+  width: 94%;
+  height: calc(100vw - 78px);
+  padding: 3%;
+  background: linear-gradient(146deg, #5dffae, #48daff, #ddff64);
+  background-size: 200% 200%;
+  border-radius: 10px;
+  box-shadow: 8px 8px 16px 0px rgb(179, 179, 179);
+}
+
+.row {
+  margin-bottom: 2.5%;
+  width: 100%;
+  height: calc((100% - (2.5% * 3)) / 4);
+}
+
+.row:last-of-type {
+  margin-bottom: 0;
+}
+
+.card {
+  margin: 0 1.25%;
+  width: calc((100% - (1.25% * 6)) / 4);
+  height: 100%;
+  background-color: #00bceb;
+  border-radius: 10px;
+}
+
+.row .card:first-of-type {
+  margin-left: 0;
+}
+
+.row .card:last-of-type {
+  margin-right: 0;
+}
+
+.card-images {
+  width: 50%;
+  height: 50%;
+  align-self: center;
+}
+
+@media screen and (max-width: 274px) {
+  .even-space {
+    text-align: center;
+    font-size: 12px;
+  }
+
+  .star {
+    width: 15px;
+  }
+}
+
+@media screen and (min-width: 550px) {
+  #game-board {
+    height: 500px;
+  }
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Match</title>
+  <link href="https://fonts.googleapis.com/css?family=Gaegu|Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <div id="welcome-screen">
+    <section class="welcome-msg">
+      <h1 class="main-heading">MATCH</h1>
+      <h2 class="sub-heading">Want to test you memory? Lets play...</h2>
+    </section>
+    <section class="welcome-buttons">
+      <button id="play-button" class="play">Play</button>
+    </section>
+  </div>
+  <div id="game-screen" class="invisible">
+    <header class="full-width">
+      <div class="wrap-container even-space pad">
+        <div class="score">
+          <h2 class="font-a">Moves</h2>
+          <p class="font-b">000</p>
+        </div>
+        <div id="stars">
+          <img class="star" src="./img/star.png" alt="star">
+          <img class="star" src="./img/star.png" alt="star">
+          <img class="star" src="./img/star.png" alt="star">
+        </div>
+        <div class="time">
+          <h2 class="font-a">Time</h2>
+          <p class="font-b">
+            <span id="mins">01</span>
+            :
+            <span id="secs">00</span>
+          </p>
+        </div>
+      </div>
+    </header>
+    <section class="full-width spacing">
+      <div id="game-board" class="wrap-container">
+        <div class="row wrap-container">
+          <div class="card wrap-container">
+            <img id="0" class="card-images" src="" alt="">
+          </div>
+          <div class="card wrap-container">
+            <img id="1" class="card-images" src="" alt="">
+          </div>
+          <div class="card wrap-container">
+            <img id="2" class="card-images" src="" alt="">
+          </div>
+          <div class="card wrap-container">
+            <img id="3" class="card-images" src="" alt="">
+          </div>
+        </div>
+        <div class="row wrap-container">
+          <div class="card wrap-container">
+            <img id="4" class="card-images" src="" alt="">
+          </div>
+          <div class="card wrap-container">
+            <img id="5" class="card-images" src="" alt="">
+          </div>
+          <div class="card wrap-container">
+            <img id="6" class="card-images" src="" alt="">
+          </div>
+          <div class="card wrap-container">
+            <img id="7" class="card-images" src="" alt="">
+          </div>
+        </div>
+        <div class="row wrap-container">
+          <div class="card wrap-container">
+            <img id="8" class="card-images" src="" alt="">
+          </div>
+          <div class="card wrap-container">
+            <img id="9" class="card-images" src="" alt="">
+          </div>
+          <div class="card wrap-container">
+            <img id="10" class="card-images" src="" alt="">
+          </div>
+          <div class="card wrap-container">
+            <img id="11" class="card-images" src="" alt="">
+          </div>
+        </div>
+        <div class="row wrap-container">
+          <div class="card wrap-container">
+            <img id="12" class="card-images" src="" alt="">
+          </div>
+          <div class="card wrap-container">
+            <img id="13" class="card-images" src="" alt="">
+          </div>
+          <div class="card wrap-container">
+            <img id="14" class="card-images" src="" alt="">
+          </div>
+          <div class="card wrap-container">
+            <img id="15" class="card-images" src="" alt="">
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+<script src="./js/app.js"></script>
+</html>
