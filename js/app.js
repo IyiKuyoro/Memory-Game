@@ -26,8 +26,6 @@ const selectImages = () => {
     images[num1] = `./img/${imgID}.png`;
     images[num2] = `./img/${imgID}.png`;
   }
-  
-  console.log(images);
 };
 
 const gameTimer = () => {
@@ -52,7 +50,6 @@ const clickCard = (event) => {
   const image = event.currentTarget.querySelector('img');
 
   image.setAttribute("src", images[image.getAttribute("id")]);
-  console.log(image.getAttribute("id"));
 };
 
 const assignCardEvets = () => {
