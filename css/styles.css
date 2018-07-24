@@ -114,6 +114,7 @@ header {
 #stars {
   padding: 10px;
   width: 120px;
+  text-align: center;
 }
 
 .star {
