@@ -52,23 +52,54 @@ const startTimer = () => {
   startTime = new Date();
 };
 
-const flipCardsBack = () => {
+const flipBack = () => {
+  // Run turning card back animation
+  matchCards[0].classList.remove('shake');
+  matchCards[1].classList.remove('shake');
+  matchCards[0].classList.add('flip-back');
+  matchCards[1].classList.add('flip-back');
+  matchCards[0].classList.remove('flipped');
+  matchCards[1].classList.remove('flipped');
+};
+
+const coverCard = () => {
+  // remove image, change background back and clear matchCards
+  matchCards[0].innerHTML = '';
+  matchCards[1].innerHTML = '';
+  matchCards[0].style = 'background: #015a70;';
+  matchCards[1].style = 'background: #015a70;';
+  
+  matchCards = [];
+};
+
+const wrong = () => {
+  setTimeout(flipBack, 500);
+  setTimeout(coverCard, 750);
+
+  // Run wrong animation
   matchCards[0].classList.remove('flip');
   matchCards[1].classList.remove('flip');
   matchCards[0].classList.add('shake');
   matchCards[1].classList.add('shake');
+  matchCards[0].style = 'background-color: rgb(237, 96, 142);';
+  matchCards[1].style = 'background-color: rgb(237, 96, 142);';
 };
 
 const checkMatch = () => {
-  if (matchCards[0] === matchCards[1]) {
-    console.log('good');
-  } else {
-    flipCardsBack();
+  // Check if the two selected cards match
+  const firstImage = matchCards[0].firstChild.getAttribute('src');
+  const secondImage = matchCards[1].firstChild.getAttribute('src');
+
+  if (firstImage === secondImage) {
+    console.log('good!');
     matchCards = [];
+  } else {
+    wrong();
   }
 };
 
 const clickCard = (event) => {
+  event.currentTarget.classList.remove('flip-back');
   event.currentTarget.classList.add('flip');  // Add animation to flip the card
 
   const flip = () => {
@@ -84,9 +115,9 @@ const clickCard = (event) => {
         movesDisplay.innerText = ++moves; // Increase and display no of moves made
 
         // Reduce starts depending on no of moves
-        if (moves === 8) {
+        if (moves === 20) {
           document.querySelector('.star').remove();
-        } else if (moves === 10) {
+        } else if (moves === 35) {
           document.querySelector('.star').remove();
         }
 

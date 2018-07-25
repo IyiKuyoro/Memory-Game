@@ -191,6 +191,12 @@ header {
   100% {width: 100%}
 }
 
+@keyframes animate-close {
+  0% {width: 100%}
+  50% {width: 0}
+  100% {width: 100%}
+}
+
 @keyframes animate-wrong {
   0% {transform: rotate(0deg)}
   10% {transform: rotate(5deg)}
@@ -213,6 +219,12 @@ header {
 .shake {
   animation-name: animate-wrong;
   animation-duration: 0.5s;
+}
+
+.flip-back {
+  animation-name: animate-close;
+  animation-duration: 0.5s;
+  animation-direction: reverse;
 }
 
 @media screen and (max-width: 274px) {
