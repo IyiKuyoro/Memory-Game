@@ -47,9 +47,13 @@ const startTimer = () => {
 };
 
 const clickCard = (event) => {
-  const image = event.currentTarget.querySelector('img');
+  const image = document.createElement('img');
+  image.setAttribute("src", images[event.currentTarget.getAttribute("id")]);
+  image.classList.add('card-images');
 
-  image.setAttribute("src", images[image.getAttribute("id")]);
+  event.currentTarget.appendChild(image);
+  console.log(image);
+  console.log(event.currentTarget);
 };
 
 const assignCardEvets = () => {
