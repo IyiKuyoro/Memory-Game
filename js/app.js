@@ -8,6 +8,27 @@ const mins = document.querySelector('#mins');
 const secs = document.querySelector('#secs');
 const movesDisplay = document.querySelector('#moves');
 
+// load pictures to improve speed
+const pictures = [
+  './img/1.png',
+  './img/2.png',
+  './img/3.png',
+  './img/4.png',
+  './img/5.png',
+  './img/6.png',
+  './img/7.png',
+  './img/8.png',
+  './img/9.png',
+  './img/10.png',
+  './img/11.png',
+  './img/12.png'
+];
+
+pictures.forEach(element => {
+  const img = new Image();
+  img.src = element;
+});
+
 // Other global variables to be used
 let matchCards = [];
 const images = [];
