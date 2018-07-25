@@ -155,19 +155,27 @@ header {
   margin-bottom: 0;
 }
 
-.card {
+.card-container {
   margin: 0 1.25%;
   width: calc((100% - (1.25% * 6)) / 4);
+  height: 100%;
+  border-radius: 10px;
+}
+
+.card {
+  margin: 0 1.25%;
+  width: 100%;
+  /* width: calc((100% - (1.25% * 6)) / 4); */
   height: 100%;
   background-color: #00bceb;
   border-radius: 10px;
 }
 
-.row .card:first-of-type {
+.row .card-container:first-of-type {
   margin-left: 0;
 }
 
-.row .card:last-of-type {
+.row .card-container:last-of-type {
   margin-right: 0;
 }
 
@@ -175,6 +183,17 @@ header {
   width: 50%;
   height: 50%;
   align-self: center;
+}
+
+@keyframes animate-open {
+  0% {width: 100%}
+  50% {width: 0}
+  100% {width: 100%}
+}
+
+.flip {
+  animation-name: animate-open;
+  animation-duration: 1s;
 }
 
 @media screen and (max-width: 274px) {

@@ -1,3 +1,4 @@
+// Save all elements that will be interacted with
 const playButton = document.querySelector('#play-button');
 const welcomeScreen = document.querySelector('#welcome-screen');
 const gameScreen = document.querySelector('#game-screen');
@@ -5,12 +6,15 @@ const gameBoard = document.querySelector('#game-board');
 const cards = document.getElementsByClassName('card');
 const mins = document.querySelector('#mins');
 const secs = document.querySelector('#secs');
+
+// Other global variables to be used
 const images = [];
 const used = [];
 let startTime = '';
 
 const selectImages = () => {
   // Select 8 images to be used in game
+  // Randomly save each image in two differenct slots
   for (let i = 0; i < 8; i += 1) {
     let num1 = 0;
     let num2 = 0;
@@ -47,22 +51,25 @@ const startTimer = () => {
 };
 
 const clickCard = (event) => {
+  console.log(event.currentTarget.style);
+  event.currentTarget.classList.add('flip');
+
   const image = document.createElement('img');
   image.setAttribute("src", images[event.currentTarget.getAttribute("id")]);
   image.classList.add('card-images');
 
   event.currentTarget.appendChild(image);
-  console.log(image);
-  console.log(event.currentTarget);
 };
 
 const assignCardEvets = () => {
+  // Hookup an event listener to the cards
   for (let i = 0; i < cards.length; i += 1) {
     cards[i].addEventListener('click', clickCard);
   }
 };
 
 const startGame = () => {
+  // Begin the game
   startTimer();
   assignCardEvets();
 };
