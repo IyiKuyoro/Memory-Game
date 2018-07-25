@@ -47,18 +47,27 @@ const startTimer = () => {
   // Initialize game timer
   setInterval(gameTimer, 1000);
   startTime = new Date();
-  gameTimer();
 };
 
 const clickCard = (event) => {
-  console.log(event.currentTarget.style);
   event.currentTarget.classList.add('flip');
 
-  const image = document.createElement('img');
-  image.setAttribute("src", images[event.currentTarget.getAttribute("id")]);
-  image.classList.add('card-images');
+  const flip = () => {
+    let curTime = new Date();
+    ticks = curTime - startTime;
 
-  event.currentTarget.appendChild(image);
+    if (ticks >= 250) {
+      if (!event.target.classList.contains('flipped')) {
+        event.target.innerHTML = `<img src="${images[event.target.getAttribute("id")]}" class="card-images">`;
+        event.target.style = 'background-color: #00bceb;';
+        event.target.classList.add('flipped');
+      }
+      clearInterval(interval);
+    }
+  }
+
+  const interval = setInterval(flip, 10);
+  let startTime = new Date();
 };
 
 const assignCardEvets = () => {

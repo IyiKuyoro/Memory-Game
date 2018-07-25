@@ -167,7 +167,7 @@ header {
   width: 100%;
   /* width: calc((100% - (1.25% * 6)) / 4); */
   height: 100%;
-  background-color: #00bceb;
+  background-color: #015a70;
   border-radius: 10px;
 }
 
@@ -193,7 +193,7 @@ header {
 
 .flip {
   animation-name: animate-open;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
 }
 
 @media screen and (max-width: 274px) {
