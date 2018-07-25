@@ -6,11 +6,14 @@ const gameBoard = document.querySelector('#game-board');
 const cards = document.getElementsByClassName('card');
 const mins = document.querySelector('#mins');
 const secs = document.querySelector('#secs');
+const movesDisplay = document.querySelector('#moves');
 
 // Other global variables to be used
+let matchCards = [];
 const images = [];
 const used = [];
 let startTime = '';
+let moves = 0;
 
 const selectImages = () => {
   // Select 8 images to be used in game
@@ -49,18 +52,48 @@ const startTimer = () => {
   startTime = new Date();
 };
 
+const flipCardsBack = () => {
+  matchCards[0].classList.remove('flip');
+  matchCards[1].classList.remove('flip');
+  matchCards[0].classList.add('shake');
+  matchCards[1].classList.add('shake');
+};
+
+const checkMatch = () => {
+  if (matchCards[0] === matchCards[1]) {
+    console.log('good');
+  } else {
+    flipCardsBack();
+    matchCards = [];
+  }
+};
+
 const clickCard = (event) => {
-  event.currentTarget.classList.add('flip');
+  event.currentTarget.classList.add('flip');  // Add animation to flip the card
 
   const flip = () => {
+    // Insert image and change background color when animation is half complete
     let curTime = new Date();
     ticks = curTime - startTime;
 
-    if (ticks >= 250) {
-      if (!event.target.classList.contains('flipped')) {
+    if (ticks >= 250) { // Add image and style at quarter of a second
+      if (!event.target.classList.contains('flipped') && event.target.classList.contains('card')) {
         event.target.innerHTML = `<img src="${images[event.target.getAttribute("id")]}" class="card-images">`;
         event.target.style = 'background-color: #00bceb;';
         event.target.classList.add('flipped');
+        movesDisplay.innerText = ++moves; // Increase and display no of moves made
+
+        // Reduce starts depending on no of moves
+        if (moves === 8) {
+          document.querySelector('.star').remove();
+        } else if (moves === 10) {
+          document.querySelector('.star').remove();
+        }
+
+        matchCards.push(event.target);
+        if (matchCards.length === 2) {
+          checkMatch();
+        }
       }
       clearInterval(interval);
     }
@@ -77,15 +110,10 @@ const assignCardEvets = () => {
   }
 };
 
-const startGame = () => {
-  // Begin the game
-  startTimer();
-  assignCardEvets();
-};
-
 playButton.addEventListener('click', () => {
   selectImages();
   welcomeScreen.classList.add('invisible');
   gameScreen.classList.remove('invisible');
-  startGame();
+  startTimer();
+  assignCardEvets();
 });
