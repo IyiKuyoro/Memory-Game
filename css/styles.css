@@ -17,6 +17,7 @@ body {
   overflow-y: hidden;
   font-family: 'Gaegu', cursive;
   background-image: url(../img/geometry2.png);
+  text-align: center;
 }
 
 button {
@@ -45,17 +46,17 @@ button {
   background-size: 300% 300%;
 
   /* The following animation was generated using Gradient-Animator --> https://www.gradient-animator.com/ */
-  -webkit-animation: AnimationName 16s ease infinite;
-  animation: AnimationName 16s ease infinite;
+  -webkit-animation: background-flow 16s ease infinite;
+  animation: background-flow 16s ease infinite;
 }
 
-@-webkit-keyframes AnimationName {
+@-webkit-keyframes background-flow {
   0%{background-position:0% 51%}
   50%{background-position:100% 50%}
   100%{background-position:0% 51%}
 }
 
-@keyframes AnimationName { 
+@keyframes background-flow { 
   0%{background-position:0% 51%}
   50%{background-position:100% 50%}
   100%{background-position:0% 51%}
@@ -163,6 +164,7 @@ header {
 }
 
 .card {
+  align-self: flex-end;
   margin: 0 1.25%;
   width: 100%;
   /* width: calc((100% - (1.25% * 6)) / 4); */
@@ -211,6 +213,33 @@ header {
   100% {transform: rotate(0deg)}
 }
 
+@keyframes animate-correct {
+  0% {
+    width: 100%;
+    height: 100%;
+  }
+
+  25% {
+    width: 90%;
+    height: 110%;
+  }
+
+  50% {
+    width: 100%;
+    height: 100%;
+  }
+
+  75% {
+    width: 110%;
+    height: 90%;
+  }
+
+  100% {
+    width: 100%;
+    height: 100%;
+  }
+}
+
 .flip {
   animation-name: animate-open;
   animation-duration: 0.5s;
@@ -221,10 +250,25 @@ header {
   animation-duration: 0.5s;
 }
 
+.bounce {
+  animation-name: animate-correct;
+  animation-duration: 0.5s;
+}
+
 .flip-back {
   animation-name: animate-close;
   animation-duration: 0.5s;
   animation-direction: reverse;
+}
+
+#congrats-screen {
+  background-color: white;
+  height: 100%;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10%;
+  padding: 5%;
 }
 
 @media screen and (max-width: 274px) {

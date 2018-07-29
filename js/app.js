@@ -146,12 +146,21 @@ const checkWin = () => {
   }
 };
 
+const correct = () => {
+  // Run correct animation
+  matchCards[0].classList.remove('flip');
+  matchCards[1].classList.remove('flip');
+  matchCards[0].classList.add('bounce');
+  matchCards[1].classList.add('bounce');
+};
+
 const checkMatch = () => {
   // Check if the two selected cards match
   const firstImage = matchCards[0].firstChild.getAttribute('src');
   const secondImage = matchCards[1].firstChild.getAttribute('src');
 
   if (firstImage === secondImage) {
+    correct();
     matchCards = [];
     checkWin();
   } else {
