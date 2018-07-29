@@ -12,10 +12,10 @@
   <div id="welcome-screen">
     <section class="welcome-msg">
       <h1 class="main-heading">MATCH</h1>
-      <h2 class="sub-heading">Want to test you memory? Lets play...</h2>
+      <h2 class="sub-heading">Want to test you memory? Let's play...</h2>
     </section>
     <section class="welcome-buttons">
-      <button id="play-button" class="play">Play</button>
+      <button class="play play-button">Play</button>
     </section>
   </div>
   <div id="game-screen" class="invisible">
@@ -23,7 +23,7 @@
       <div class="wrap-container even-space pad">
         <div class="score">
           <h2 class="font-a">Moves</h2>
-          <p id="moves" class="font-b">000</p>
+          <p id="moves" class="font-b">0</p>
         </div>
         <div id="stars">
           <img class="star" src="./img/star.png" alt="star">
@@ -115,6 +115,23 @@
           </div>
         </div>
       </div>
+    </section>
+  </div>
+  <div id="congrats-screen" class="invisible">
+    <section>
+      <h1 class="main-heading">Congratulations!</h1>
+      <h1 class="main-heading">You Won!</h1>
+      <h2 class="sub-heading moves">Moves:
+        <span id="congrats-moves">
+        </span>
+      </h2>
+      <h2 class="sub-heading stars">Stars:
+        <span id="congrats-stars">
+        </span>
+      </h2>
+    </section>
+    <section class="welcome-buttons">
+      <button class="replay play">Again!</button>
     </section>
   </div>
 </body>

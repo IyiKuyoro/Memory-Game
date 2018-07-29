@@ -1,6 +1,7 @@
 // Save all elements that will be interacted with
-const playButton = document.querySelector('#play-button');
+const playButton = document.querySelector('.play-button');
 const welcomeScreen = document.querySelector('#welcome-screen');
+const congratsScreen = document.querySelector('#congrats-screen');
 const gameScreen = document.querySelector('#game-screen');
 const gameBoard = document.querySelector('#game-board');
 const cards = document.getElementsByClassName('card');
@@ -30,11 +31,14 @@ pictures.forEach(element => {
 });
 
 // Other global variables to be used
+let playing = false;
+let stars = 3;
 let matchCards = [];
-const images = [];
-const used = [];
+let images = [];
+let used = [];
 let startTime = '';
 let moves = 0;
+let gameTimerInterval = {};
 
 const selectImages = () => {
   // Select 8 images to be used in game
@@ -69,7 +73,7 @@ const gameTimer = () => {
 
 const startTimer = () => {
   // Initialize game timer
-  setInterval(gameTimer, 1000);
+  gameTimerInterval = setInterval(gameTimer, 1000);
   startTime = new Date();
 };
 
@@ -106,21 +110,73 @@ const wrong = () => {
   matchCards[1].style = 'background-color: rgb(237, 96, 142);';
 };
 
+const startGame = () => {
+  selectImages();
+  welcomeScreen.remove();
+  congratsScreen.classList.add('invisible');
+  gameScreen.classList.remove('invisible');
+  assignCardEvets();
+};
+
+const endGame = () => {
+  mins.innerText = '0';
+  secs.innerText = '00';
+
+  gameScreen.classList.add('invisible');
+  document.querySelector('#congrats-moves').innerText = moves;
+  
+  for (let i = 0; i < stars; i += 1) {
+    // Add the number of stars to the congrats screen
+    '<img class="star" src="./img/star.png" alt="star">'
+    const star = document.createElement('img');
+    star.classList.add('star');
+    star.setAttribute('src', './img/star.png');
+    document.querySelector('#congrats-stars').appendChild(star);
+  }
+
+  document.querySelector('#congrats-screen').classList.remove('invisible');
+};
+
+const checkWin = () => {
+  const flippedCards = document.getElementsByClassName('flipped');
+
+  if (flippedCards.length === 16) {
+    clearInterval(gameTimerInterval);
+    endGame();
+  }
+};
+
 const checkMatch = () => {
   // Check if the two selected cards match
   const firstImage = matchCards[0].firstChild.getAttribute('src');
   const secondImage = matchCards[1].firstChild.getAttribute('src');
 
   if (firstImage === secondImage) {
-    console.log('good!');
     matchCards = [];
+    checkWin();
   } else {
     wrong();
   }
 };
 
+const reduceStarts = () => {
+  document.querySelector('.star').remove();
+  stars -= 1;
+};
+
 const clickCard = (event) => {
-  event.currentTarget.classList.remove('flip-back');
+  if (matchCards.length >= 2) {
+    // Prevent user from fliping further cards in a hurry
+    return undefined;
+  }
+
+  if (!playing) {
+    // Start the game timer
+    startTimer();
+    playing = true;
+  }
+
+  event.currentTarget.classList.remove('flip-back');  // Remove the flip-back animation class
   event.currentTarget.classList.add('flip');  // Add animation to flip the card
 
   const flip = () => {
@@ -128,20 +184,23 @@ const clickCard = (event) => {
     let curTime = new Date();
     ticks = curTime - startTime;
 
-    if (ticks >= 250) { // Add image and style at quarter of a second
+    if (ticks >= 250) {
       if (!event.target.classList.contains('flipped') && event.target.classList.contains('card')) {
+        // If card has not been flipped,
+        // add image and style at quarter of a second (half way of the flip)
         event.target.innerHTML = `<img src="${images[event.target.getAttribute("id")]}" class="card-images">`;
         event.target.style = 'background-color: #00bceb;';
         event.target.classList.add('flipped');
         movesDisplay.innerText = ++moves; // Increase and display no of moves made
 
-        // Reduce starts depending on no of moves
+        // Reduce starts depending on number of moves made
         if (moves === 20) {
-          document.querySelector('.star').remove();
+          reduceStarts();
         } else if (moves === 35) {
-          document.querySelector('.star').remove();
+          reduceStarts();
         }
 
+        // Add card to array that holds cards to compair
         matchCards.push(event.target);
         if (matchCards.length === 2) {
           checkMatch();
@@ -162,10 +221,4 @@ const assignCardEvets = () => {
   }
 };
 
-playButton.addEventListener('click', () => {
-  selectImages();
-  welcomeScreen.classList.add('invisible');
-  gameScreen.classList.remove('invisible');
-  startTimer();
-  assignCardEvets();
-});
+playButton.addEventListener('click', startGame);
