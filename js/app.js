@@ -1,10 +1,11 @@
 // Save all elements that will be interacted with
 const playButton = document.querySelector('.play-button');
+const replay = document.querySelector('.replay');
 const welcomeScreen = document.querySelector('#welcome-screen');
 const congratsScreen = document.querySelector('#congrats-screen');
 const gameScreen = document.querySelector('#game-screen');
 const gameBoard = document.querySelector('#game-board');
-const cards = document.getElementsByClassName('card');
+const cards = document.querySelectorAll('.card');
 const mins = document.querySelector('#mins');
 const secs = document.querySelector('#secs');
 const movesDisplay = document.querySelector('#moves');
@@ -93,7 +94,7 @@ const coverCard = () => {
   matchCards[1].innerHTML = '';
   matchCards[0].style = 'background: #015a70;';
   matchCards[1].style = 'background: #015a70;';
-  
+
   matchCards = [];
 };
 
@@ -118,23 +119,69 @@ const startGame = () => {
   assignCardEvets();
 };
 
-const endGame = () => {
+const resetVariables = () => {
+  playing = false;
+  stars = 3;
+  matchCards = [];
+  images = [];
+  used = [];
+  startTime = '';
+  moves = 0;
+  gameTimerInterval = {};
+};
+
+const resetInfoBar = () => {
+  // Reset all game informatation
+  movesDisplay.innerText = 0;
+  addStars(document.querySelector('#stars'));
   mins.innerText = '0';
   secs.innerText = '00';
+};
 
-  gameScreen.classList.add('invisible');
-  document.querySelector('#congrats-moves').innerText = moves;
-  
+const removeImages = () => {
+  const images = document.querySelectorAll('.card-images');
+  images.forEach(element => {
+    element.remove();
+  });
+};
+
+const resetCards = () => {
+  removeImages();
+
+  // Remove bounce animation class and flipped
+  // Remove light color
+  cards.forEach(element => {
+    element.classList.remove('flipped');
+    element.classList.remove('bounce');
+    element.style = '';
+  });
+};
+
+const addStars = (element) => {
+  if (element.getAttribute('id') === 'stars') {
+    document.querySelector('#stars').innerHTML = '';
+  } else if (element.getAttribute('id') === 'congrats-stars') {
+    document.querySelector('#congrats-stars').innerHTML = '';
+  }
+
   for (let i = 0; i < stars; i += 1) {
     // Add the number of stars to the congrats screen
-    '<img class="star" src="./img/star.png" alt="star">'
     const star = document.createElement('img');
     star.classList.add('star');
     star.setAttribute('src', './img/star.png');
-    document.querySelector('#congrats-stars').appendChild(star);
+    element.appendChild(star);
   }
+};
 
+const endGame = () => {
+  addStars(document.querySelector('#congrats-stars'));
+  gameScreen.classList.add('invisible');
+  document.querySelector('#congrats-moves').innerText = moves;
   document.querySelector('#congrats-screen').classList.remove('invisible');
+
+  resetVariables();
+  resetInfoBar();
+  resetCards();
 };
 
 const checkWin = () => {
@@ -231,3 +278,5 @@ const assignCardEvets = () => {
 };
 
 playButton.addEventListener('click', startGame);
+
+replay.addEventListener('click', startGame);
