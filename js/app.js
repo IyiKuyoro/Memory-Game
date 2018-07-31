@@ -9,6 +9,7 @@ const cards = document.querySelectorAll('.card');
 const mins = document.querySelector('#mins');
 const secs = document.querySelector('#secs');
 const movesDisplay = document.querySelector('#moves');
+const refresh = document.querySelector('#refresh');
 
 // Other global variables to be used
 let playing = false;
@@ -59,6 +60,10 @@ const startTimer = () => {
   startTime = new Date();
 };
 
+const stopTimer = () => {
+  clearInterval(gameTimerInterval);
+}
+
 const flipBack = () => {
   // Run turning card back animation
   matchCards[0].classList.remove('shake');
@@ -106,7 +111,7 @@ const resetVariables = () => {
   matchCards = [];
   images = [];
   used = [];
-  startTime = '';
+  startTime = new Date();
   moves = 0;
   gameTimerInterval = {};
 };
@@ -262,3 +267,9 @@ const assignCardEvets = () => {
 playButton.addEventListener('click', startGame);
 
 replay.addEventListener('click', startGame);
+
+refresh.addEventListener('click', () => {
+  stopTimer();
+  endGame();
+  startGame();
+});
