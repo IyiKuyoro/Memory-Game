@@ -21,9 +21,11 @@ let gameTime = '';
 let moves = 0;
 let gameTimerInterval = {};
 
+/**
+* @description Selects eight random images from the 12 to be used in the game
+*/
 const selectImages = () => {
-  // Select 8 images to be used in game
-  // Randomly save each image in two differenct slots
+  // Randomly save each image in two different slots
   for (let i = 0; i < 8; i += 1) {
     let num1 = 0;
     let num2 = 0;
@@ -41,8 +43,10 @@ const selectImages = () => {
   }
 };
 
+/**
+* @description Calculates the game time and updates the DOM
+*/
 const gameTimer = () => {
-  // alculate the mount of seconds spent in game
   const curTime = new Date();
   let elapsedTime = curTime - startTime;
   elapsedTime = Math.round(elapsedTime /= 1000);
@@ -53,18 +57,26 @@ const gameTimer = () => {
   gameTime = `${mins.innerText}:${secs.innerText}`;
 };
 
+/**
+* @description Initialize game timer
+*/
 const startTimer = () => {
   // Initialize game timer
   gameTimerInterval = setInterval(gameTimer, 1000);
   startTime = new Date();
 };
 
+/**
+* @description Stop the game timer
+*/
 const stopTimer = () => {
   clearInterval(gameTimerInterval);
 };
 
+/**
+* @description Run animation to flip the cards over
+*/
 const flipBack = () => {
-  // Run turning card back animation
   matchCards[0].classList.remove('shake');
   matchCards[1].classList.remove('shake');
   matchCards[0].classList.add('flip-back');
@@ -73,8 +85,10 @@ const flipBack = () => {
   matchCards[1].classList.remove('flipped');
 };
 
+/**
+* @description Remove the image element, change background and clear the match-cards array
+*/
 const coverCard = () => {
-  // remove image, change background back and clear matchCards
   matchCards[0].innerHTML = '';
   matchCards[1].innerHTML = '';
   matchCards[0].style = 'background: #015a70;';
@@ -83,6 +97,9 @@ const coverCard = () => {
   matchCards = [];
 };
 
+/**
+* @description Run the animation for a wrong match
+*/
 const wrong = () => {
   setTimeout(flipBack, 500);
   setTimeout(coverCard, 750);
@@ -96,14 +113,20 @@ const wrong = () => {
   matchCards[1].style = 'background-color: rgb(237, 96, 142);';
 };
 
+/**
+* @description Initialize game timer
+*/
 const startGame = () => {
   selectImages();
   welcomeScreen.remove();
   congratsScreen.classList.add('invisible');
   gameScreen.classList.remove('invisible');
-  assignCardEvets();
+  assignCardsEvent();
 };
 
+/**
+* @description Reset all global variables
+*/
 const resetVariables = () => {
   playing = false;
   stars = 3;
@@ -115,14 +138,19 @@ const resetVariables = () => {
   gameTimerInterval = {};
 };
 
+/**
+* @description Reset the game information displayed in the header
+*/
 const resetInfoBar = () => {
-  // Reset all game informatation
   movesDisplay.innerText = 0;
   addStars(document.querySelector('#stars'));
   mins.innerText = '0';
   secs.innerText = '00';
 };
 
+/**
+* @description Remove all the images from the game board
+*/
 const removeImages = () => {
   const usedImages = document.querySelectorAll('.card-images');
   usedImages.forEach((element) => {
@@ -130,6 +158,9 @@ const removeImages = () => {
   });
 };
 
+/**
+* @description Reset the cards to their original state
+*/
 const resetCards = () => {
   removeImages();
 
@@ -142,6 +173,10 @@ const resetCards = () => {
   });
 };
 
+/**
+* @description Add stars to the passed element
+* @param {object} element - The DOM element where stars are to be added
+*/
 const addStars = (element) => {
   if (element.getAttribute('id') === 'stars') {
     document.querySelector('#stars').innerHTML = '';
@@ -158,6 +193,9 @@ const addStars = (element) => {
   }
 };
 
+/**
+* @description Initialize the game over sequence
+*/
 const endGame = () => {
   addStars(document.querySelector('#congrats-stars'));
   gameScreen.classList.add('invisible');
@@ -170,6 +208,9 @@ const endGame = () => {
   resetCards();
 };
 
+/**
+* @description Check the board to see if win condition has been met
+*/
 const checkWin = () => {
   const flippedCards = document.getElementsByClassName('flipped');
 
@@ -179,14 +220,19 @@ const checkWin = () => {
   }
 };
 
+/**
+* @description Run bounce animation for correct match
+*/
 const correct = () => {
-  // Run correct animation
   matchCards[0].classList.remove('flip');
   matchCards[1].classList.remove('flip');
   matchCards[0].classList.add('bounce');
   matchCards[1].classList.add('bounce');
 };
 
+/**
+* @description Check if selected cards match
+*/
 const checkMatch = () => {
   // Check if the two selected cards match
   const firstImage = matchCards[0].firstChild.getAttribute('src');
@@ -201,16 +247,22 @@ const checkMatch = () => {
   }
 };
 
+/**
+* @description Reduce the number of stars left by one
+*/
 const reduceStarts = () => {
   document.querySelector('.star').remove();
   stars -= 1;
 };
 
+/**
+* @description Function simulating a card click event
+*/
 const clickCard = (event) => {
   const animeStartTime = new Date();
 
   if (matchCards.length >= 2) {
-    // Prevent user from fliping further cards in a hurry
+    // Prevent user from flipping further cards in a hurry
     return undefined;
   }
 
@@ -244,7 +296,7 @@ const clickCard = (event) => {
           reduceStarts();
         }
 
-        // Add card to array that holds cards to compair
+        // Add card to array that holds cards to compare
         matchCards.push(event.target);
         if (matchCards.length === 2) {
           checkMatch();
@@ -259,8 +311,10 @@ const clickCard = (event) => {
   return undefined;
 };
 
-const assignCardEvets = () => {
-  // Hookup an event listener to the cards
+/**
+* @description Assign all cards an event listener
+*/
+const assignCardsEvent = () => {
   for (let i = 0; i < cards.length; i += 1) {
     cards[i].addEventListener('click', clickCard);
   }
