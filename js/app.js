@@ -4,7 +4,6 @@ const replay = document.querySelector('.replay');
 const welcomeScreen = document.querySelector('#welcome-screen');
 const congratsScreen = document.querySelector('#congrats-screen');
 const gameScreen = document.querySelector('#game-screen');
-const gameBoard = document.querySelector('#game-board');
 const cards = document.querySelectorAll('.card');
 const mins = document.querySelector('#mins');
 const secs = document.querySelector('#secs');
@@ -34,7 +33,7 @@ const selectImages = () => {
       num1 = Math.floor(Math.random() * 16);
       num2 = Math.floor(Math.random() * 16);
       imgID = Math.ceil(Math.random() * 12);
-    } while (num1 === num2 || images[num1] || images[num2] || used[imgID])
+    } while (num1 === num2 || images[num1] || images[num2] || used[imgID]);
 
     used[imgID] = 'true';
     images[num1] = `./img/${imgID}.png`;
@@ -44,7 +43,7 @@ const selectImages = () => {
 
 const gameTimer = () => {
   // alculate the mount of seconds spent in game
-  curTime = new Date();
+  const curTime = new Date();
   let elapsedTime = curTime - startTime;
   elapsedTime = Math.round(elapsedTime /= 1000);
 
@@ -62,7 +61,7 @@ const startTimer = () => {
 
 const stopTimer = () => {
   clearInterval(gameTimerInterval);
-}
+};
 
 const flipBack = () => {
   // Run turning card back animation
@@ -125,8 +124,8 @@ const resetInfoBar = () => {
 };
 
 const removeImages = () => {
-  const images = document.querySelectorAll('.card-images');
-  images.forEach(element => {
+  const usedImages = document.querySelectorAll('.card-images');
+  usedImages.forEach((element) => {
     element.remove();
   });
 };
@@ -136,7 +135,7 @@ const resetCards = () => {
 
   // Remove bounce animation class and flipped
   // Remove light color
-  cards.forEach(element => {
+  cards.forEach((element) => {
     element.classList.remove('flipped');
     element.classList.remove('bounce');
     element.style = '';
@@ -208,6 +207,8 @@ const reduceStarts = () => {
 };
 
 const clickCard = (event) => {
+  const animeStartTime = new Date();
+
   if (matchCards.length >= 2) {
     // Prevent user from fliping further cards in a hurry
     return undefined;
@@ -219,19 +220,19 @@ const clickCard = (event) => {
     playing = true;
   }
 
-  event.currentTarget.classList.remove('flip-back');  // Remove the flip-back animation class
-  event.currentTarget.classList.add('flip');  // Add animation to flip the card
+  event.currentTarget.classList.remove('flip-back'); // Remove the flip-back animation class
+  event.currentTarget.classList.add('flip'); // Add animation to flip the card
 
   const flip = () => {
     // Insert image and change background color when animation is half complete
-    let curTime = new Date();
-    ticks = curTime - startTime;
+    const curTime = new Date();
+    const ticks = curTime - animeStartTime;
 
     if (ticks >= 250) {
       if (!event.target.classList.contains('flipped') && event.target.classList.contains('card')) {
         // If card has not been flipped,
         // add image and style at quarter of a second (half way of the flip)
-        event.target.innerHTML = `<img src="${images[event.target.getAttribute("id")]}" class="card-images">`;
+        event.target.innerHTML = `<img src="${images[event.target.getAttribute('id')]}" class="card-images">`;
         event.target.style = 'background-color: #00bceb;';
         event.target.classList.add('flipped');
         movesDisplay.innerText = ++moves; // Increase and display no of moves made
@@ -251,10 +252,11 @@ const clickCard = (event) => {
       }
       clearInterval(interval);
     }
-  }
+  };
 
   const interval = setInterval(flip, 10);
-  let startTime = new Date();
+
+  return undefined;
 };
 
 const assignCardEvets = () => {
