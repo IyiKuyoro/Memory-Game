@@ -132,8 +132,18 @@ header {
   margin-left: auto;
 }
 
-.spacing {
-  margin-top: 50px;
+#refresh {
+  margin: 25px auto 25px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+}
+
+#refresh-img {
+  width: 25px;
+  height: 25px;
 }
 
 #game-board {
