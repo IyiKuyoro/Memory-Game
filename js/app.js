@@ -10,27 +10,6 @@ const mins = document.querySelector('#mins');
 const secs = document.querySelector('#secs');
 const movesDisplay = document.querySelector('#moves');
 
-// load pictures to improve speed
-const pictures = [
-  './img/1.png',
-  './img/2.png',
-  './img/3.png',
-  './img/4.png',
-  './img/5.png',
-  './img/6.png',
-  './img/7.png',
-  './img/8.png',
-  './img/9.png',
-  './img/10.png',
-  './img/11.png',
-  './img/12.png'
-];
-
-pictures.forEach(element => {
-  const img = new Image();
-  img.src = element;
-});
-
 // Other global variables to be used
 let playing = false;
 let stars = 3;
@@ -38,6 +17,7 @@ let matchCards = [];
 let images = [];
 let used = [];
 let startTime = '';
+let gameTime = '';
 let moves = 0;
 let gameTimerInterval = {};
 
@@ -70,6 +50,7 @@ const gameTimer = () => {
   // Attach the time spent in game to DOM
   mins.innerText = Math.floor(elapsedTime / 60);
   secs.innerText = (elapsedTime % 60) < 10 ? `0${elapsedTime % 60}` : elapsedTime % 60;
+  gameTime = `${mins.innerText}:${secs.innerText}`;
 };
 
 const startTimer = () => {
@@ -177,6 +158,7 @@ const endGame = () => {
   addStars(document.querySelector('#congrats-stars'));
   gameScreen.classList.add('invisible');
   document.querySelector('#congrats-moves').innerText = moves;
+  document.querySelector('#congrats-time').innerText = `Time: ${gameTime}`;
   document.querySelector('#congrats-screen').classList.remove('invisible');
 
   resetVariables();
