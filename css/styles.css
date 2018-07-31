@@ -56,7 +56,7 @@ button {
   100%{background-position:0% 51%}
 }
 
-@keyframes background-flow { 
+@keyframes background-flow {
   0%{background-position:0% 51%}
   50%{background-position:100% 50%}
   100%{background-position:0% 51%}
@@ -79,7 +79,7 @@ button {
 }
 
 .welcome-buttons {
-  margin-top: 50px; 
+  margin-top: 50px;
 }
 
 .play {
@@ -177,7 +177,6 @@ header {
   align-self: flex-end;
   margin: 0 1.25%;
   width: 100%;
-  /* width: calc((100% - (1.25% * 6)) / 4); */
   height: 100%;
   background-color: #015a70;
   border-radius: 10px;
