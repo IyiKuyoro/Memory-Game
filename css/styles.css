@@ -1,3 +1,4 @@
+/* Global */
 h1,
 h2,
 h3,
@@ -38,6 +39,13 @@ button {
   justify-content: center;
 }
 
+.full-width {
+  max-width: 550px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Welcome-Modal */
 #welcome-screen {
   padding: 5%;
   height: 100vh;
@@ -98,6 +106,7 @@ button {
   padding: 15px;
 }
 
+/* Header */
 header {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -126,12 +135,6 @@ header {
   justify-content: space-between;
 }
 
-.full-width {
-  max-width: 550px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
 #refresh {
   margin: 25px auto 25px;
   margin-left: auto;
@@ -146,6 +149,7 @@ header {
   height: 25px;
 }
 
+/* Game Board */
 #game-board {
   width: 94%;
   height: calc(100vw - 78px);
@@ -292,6 +296,7 @@ header {
   animation-direction: reverse;
 }
 
+/* Congrats Modal */
 #congrats-screen {
   background-color: white;
   height: 100%;
@@ -302,6 +307,7 @@ header {
   padding: 5%;
 }
 
+/* Media Queries */
 @media screen and (max-width: 274px) {
   .even-space {
     text-align: center;
