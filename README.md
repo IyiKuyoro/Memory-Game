@@ -22,7 +22,7 @@ This game has been tested across multiple devices and should work fine on all mo
   * JavaScript: Used in implementing all game logic and DOM manipulation
 
 # Author
-  * *Opeoluwa Iyi-Kuyoro* - [Portfolio](https://iyikuyoro.github.io/My-Portfolio/)
+  * *Opeoluwa Iyi-Kuyoro* :man: - [Portfolio](https://iyikuyoro.github.io/My-Portfolio/)
 
 # Collaboration
 I am currently not accepting requests to collaborate on this project, however, your feedback is most welcome.
