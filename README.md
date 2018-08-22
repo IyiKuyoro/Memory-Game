@@ -3,7 +3,7 @@ This is a simple memory game that tests the player's ability to remember the exa
 ![game screen shot](https://iyikuyoro.github.io/Memory-Game/img/screen-shot.png)
 
 # Getting Started
-You can play the game online :point_right: [Here](https://www.google.com "Play the game").
+You can play the game online :point_right: [Here](https://iyikuyoro.github.io/Memory-Game/game.html).
 
 Or 
 
